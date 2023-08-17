@@ -1,0 +1,126 @@
+<!-- <p>all-contacts works!</p> -->
+
+<main id="main" class="main">
+  <!-- jumbotron content  start -->
+  <div class=" pb-5">
+    <h1 class="text_style">All Contacts</h1>
+    <h3 class="text1">Cylsys</h3>
+
+  </div>
+
+  <!-- jumbotron content end -->
+
+  <div class="card" style="padding: inherit;">
+    <div class="div">
+      <nav class="navbar navbar-expand-lg navbar-light  p-2 ">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav navbaritem">
+
+            <li class="nav-item dropdown ">
+              <a class="nav-link   text-light" data-bs-toggle="dropdown">
+                <span class="d-none d-md-block dropdown-toggle ps-2">Manage Contacts</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" [routerLink]="['/viewContact']">View Contacts</a>
+                <a class="dropdown-item" [routerLink]="['/unsucscribeContacts']">Unsubscribe Contacts</a>
+              </div>
+            </li>
+
+            <li class="nav-item dropdown ">
+              <a class="nav-link  text-light" data-bs-toggle="dropdown">
+                <span class="d-none d-md-block dropdown-toggle ps-2">Add Contacts</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" [routerLink]="['/addSubscribers']">Add a Subscribers</a>
+                <a class="dropdown-item" [routerLink]="['/allContact/importContact/upload']">Import Contacts</a>
+              </div>
+            </li>
+
+
+
+
+
+          </ul>
+        </div>
+
+        <!-- End Profile Dropdown Items -->
+        <!-- End Profile Nav -->
+
+
+      </nav>
+      <!-- <button mat-button [matMenuTriggerFor]="belowMenu">Below</button>
+            <mat-menu #belowMenu="matMenu" yPosition="below">
+            <button mat-menu-item>Item 1</button>
+            <button mat-menu-item>Item 2</button>
+            </mat-menu> -->
+      <br>
+      <form class="">
+        <input hidden class="form-control border-top-0 border-left-0 border-right-0 fw-bold" type="search"
+          placeholder="Search" aria-label="Search">
+        <!-- <br> -->
+      </form>
+    </div>
+
+    <div class=" mt-5">
+
+      <div class="row">
+
+        <div class="col-md-3">
+          <label>Show
+            <select (change)="onTableSizeChange($event)">
+              <option *ngFor="let size of tableSizes">{{size}}</option>
+            </select> entries</label>
+        </div>
+
+        <div class="col-md-9" style="float:right;text-align: right">
+          <pagination-controls previousLabel="Prev" nextLabel="Next"
+            (pageChange)="onTabledataChange($event)"></pagination-controls>
+        </div>
+
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <table class="table table-bordered text-center">
+            <thead>
+              <tr>
+                <th width="5%" scope="col">S.No.</th>
+                <th width="45%" scope="col">Email</th>
+                <th width="25%" scope="col">First Name</th>
+                <th width="25%" scope="col">Last Name</th>
+
+                <th scope="col">City</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                *ngFor="let Item of finaldata | paginate: {itemsPerPage: tableSize, currentPage: page, totalItems: count }; let i = index;">
+                <td style="text-align: center;">{{i+1}}</td>
+                <td style="text-align: center;">{{Item.Email}}</td>
+                <td style="text-align: center;">{{Item.First_Name}}</td>
+                <td style="text-align: center;">{{Item.Last_Name}}</td>
+
+                <td>{{Item.city}}</td>
+              </tr>
+            </tbody>
+
+          </table>
+
+
+          <br>
+          <div class="firstdiv p-2 mt-4 pagetitle" style="display: flex;align-items: center;flex-flow:  row wrap;">
+            <div class="col-md-10">
+
+              <h1 class="companygreeting m-0">Total contacts</h1>
+            </div>
+            <div class="col-md-2">
+              <h1 class="companygreeting m-0">{{finaldata?.length}}</h1>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

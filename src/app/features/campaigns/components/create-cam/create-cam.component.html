@@ -1,0 +1,64 @@
+<main id="main" class="main">
+
+    <div class="pb-5">
+        <h1 class="text_style">Create Campaigns</h1>
+    </div>
+
+    <div class="card" style="padding: inherit;">
+        <form method="post" [formGroup]="CampaigsFrom" (ngSubmit)="createcampaigs()">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-2 pl-3">
+                        <label for="">Campaigns Name<span class="text-danger">*</span> </label>
+
+                    </div>
+
+                    <div class="col-md-4">
+
+                        <input type="text" name="" id="" class="form-control" placeholder="Enter Campaigns Name" maxlength="25"
+                            formControlName="campaign_Name" [ngClass]="{errors:getcontrol('campaign_Name')?.errors && getcontrol('campaign_Name')?.touched}" (keypress)="ValidateAlpha($event)">
+                        <div *ngIf="getcontrol('campaign_Name')?.errors && getcontrol('campaign_Name')?.touched">
+                            <small class="text-danger" *ngIf="getcontrol('campaign_Name')?.errors?.['minLength']"> The Campaign Name is 4 words</small>
+
+                            <small class="text-danger" *ngIf="getcontrol('campaign_Name')?.errors?.['required']">Campaign Name
+                                Required.</small>
+                            
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <br><br>
+
+                <div class="row">
+                    <div class="col-md-2 pl-3">
+                        <label for="">Topic Name<span class="text-danger">*</span>
+                        </label>
+                    </div>
+
+                    <div class="col-md-4">
+                        <select class="form-select mb-4" id="" name="">
+                            <option value="Marketing" disabled [selected]="true">Marketing</option>
+                        </select>
+                        <!-- <div *ngIf="submitted && f.ParentDepartment.errors" class="invalid-feedback">
+
+                            <div *ngIf="f.ParentDepartment.errors.required">Parent Department is required</div>
+
+                        </div> -->
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-12">
+
+                <button class="btn btn-secondary" type="submit" [disabled]="CampaigsFrom.invalid">Submit</button>
+                &nbsp;&nbsp;
+
+                <button class="btn border bg-light ml-2 mb-1" type="reset" [routerLink]="['/campaigns']">Cancel</button>
+             </div>
+        </form>
+    </div>
+</main>

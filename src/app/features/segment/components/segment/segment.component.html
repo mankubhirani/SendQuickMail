@@ -1,0 +1,132 @@
+<!-- <p>segment works!</p> -->
+
+<main id="main" class="main">
+  <!-- jumbotron content  start -->
+  <div class="pb-5">
+    <h3 class="text_style">Segment</h3>
+    <h2 class="text1">Cylsys</h2>
+  </div>
+  
+  <div class="card" style="padding: inherit;">
+    <div class="div">
+      <nav class="navbar navbar-expand-lg navbar-light  p-2 ">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav navbaritem">
+
+            <li class="nav-item dropdown ">
+              <a class="nav-link   text-light" data-bs-toggle="dropdown">
+                <span class="d-none d-md-block dropdown-toggle ps-2">Manage Contacts</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" [routerLink]="['/viewContact']">View Contacts</a>
+                <a class="dropdown-item" [routerLink]="['/unsucscribeContacts']">Unsubscribe Contacts</a>
+              </div>
+            </li>
+
+            <li class="nav-item dropdown ">
+              <a class="nav-link  text-light" data-bs-toggle="dropdown">
+                <span class="d-none d-md-block dropdown-toggle ps-2">Add Contacts</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" [routerLink]="['/addSubscribers']">Add a Subscribers</a>
+                <a class="dropdown-item" [routerLink]="['/importContact']">Import Contacts</a>
+              </div>
+            </li>
+
+          </ul>
+        </div>
+
+      </nav>
+     
+      <br>
+      <form class="">
+        <input hidden class="form-control border-top-0 border-left-0 border-right-0 fw-bold" type="search" placeholder="Search"
+          aria-label="Search">
+        <br>
+      </form>
+    </div>
+
+    <div class=" col-md-12 mb-3">
+      <div class="row">
+        <div class="col-md-6">
+          <h3 class="display-4">Segments</h3>
+        </div>
+        <div class="col-md-6">
+          <button class="btn button-small bg-secondary text-white me-1 mt-3 p-2 fw-bold float-end" type="button"
+            data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false"
+            aria-controls="collapseWidthExample" [routerLink]="['/createSegment']"> Create Segments</button>
+        </div>
+      </div>
+    </div>
+
+
+  
+    <div class="col-md-12">
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <h4 class="companygreeting m-0">Saved Segment</h4>
+        </div>
+      </div>
+
+    </div>
+    <div class="col-md-12 mb-5">
+
+
+      <table class="border-dark">
+
+        <tr *ngFor="let Item of this.segment">
+          <th scope="row"> </th>
+
+          <td>
+            <a>
+              <!-- [routerLink]="['/segmentcriteria']" -->
+              <h5 class="text-info" >{{Item.segmentName}}</h5>
+            </a>
+            <p>Created on {{Item.createdDate|date:'medium'}} by {{Item.craetedBy}}
+            </p>
+          </td>
+          <td>
+            <!-- <a class="btn creat-studio-btn " href="#" role="button">Edit</a> -->
+
+            <button class="btn creat-studio-btn " type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              <span> Action <i class="bi bi-chevron-down"></i></span>
+            </button>
+
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <li><a class="dropdown-item" (click)="editSegment(Item)">Edit</a></li>
+              <li><a class="dropdown-item" (click)="deleteSegment(Item)">Delete</a></li>
+            </ul>
+
+          </td>
+        </tr>
+      </table>
+
+      <!-- <table >
+      
+      <tr>
+        <th scope="row"><input type="checkbox" aria-label="Checkbox for following text input"></th>
+      
+        <td>
+        <a >  <h5 class="text-info">Segment 2 City</h5></a>
+          <p>Created on Feb 27, 2022 7:13pm by Deepak patel
+            </p>
+        </td>
+        <td>
+
+         <button class="btn creat-studio-btn " type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            <span> Action <i class="bi bi-chevron-down"></i></span>
+            </button>
+
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <li><a class="dropdown-item" href="#">Edit</a></li>
+            <li><a class="dropdown-item" href="#">Delete</a></li>
+          </ul>
+
+        </td>
+      </tr>
+    </table> -->
+    </div>
+  </div>
+</main>

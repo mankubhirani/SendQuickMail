@@ -1,0 +1,145 @@
+<main id="main" class="main">
+    <div class="col-md-12">
+        <h3 class="text_style">Test</h3>
+    </div>
+
+    <div class="card" style="padding: inherit;">
+
+
+        <ul class="nav nav-tabs nav-fill mb-3" id="ex1" role="tablist">
+
+            <!-- <li class="nav-item" role="presentation">
+          <a class="nav-link active" id="ex2-tab-1" data-bs-toggle="tab" href="#ex2-tabs-1" role="tab"
+            aria-controls="ex2-tabs-1" aria-selected="true">Criteria</a>
+        </li> -->
+
+            <li class="nav-item" role="presentation">
+                <a class="nav-link active" id="ex2-tab-2" data-bs-toggle="tab" href="#ex2-tabs-2" role="tab"
+                    aria-controls="ex2-tabs-2" aria-selected="true">
+                    <h3>Contacts</h3>
+                </a>
+            </li>
+
+        </ul>
+
+        <div class="tab-content" id="ex2-content">
+
+            <!-- <div class="tab-pane fade show active" id="ex2-tabs-1" role="tabpanel" aria-labelledby="ex2-tab-1">
+          <br>
+          <div class="card" style="padding: inherit;">
+  
+            <div class="col-md-12">
+              <div class="row">
+                <div class="col-md-2 ">
+                </div>
+              
+                <div class="col-md-2">
+                  <select class="form-select">
+                    <option value="First name">First name</option>
+                    <option value="Last name">Last name</option>
+                    <option value="Email Address">Email</option>
+                  </select>
+                  contains
+                  <input class="text" >
+                </div>
+              </div>
+  
+            </div>
+  
+           
+          </div>
+  
+        </div> -->
+
+
+            <div class="tab-pane fade show active" id="ex2-tabs-2" role="tabpanel" aria-labelledby="ex2-tab-2">
+                <br>
+
+                <div class="row">
+
+                    <div class="col-md-3">
+                        <label>Show
+                            <select (change)="onTableSizeChange($event)">
+                                <option *ngFor="let size of tableSizes">{{size}}</option>
+                            </select> entries</label>
+                    </div>
+
+                    <div class="col-md-9" style="float:right;text-align: right">
+                        <pagination-controls previousLabel="Prev" nextLabel="Next"
+                            (pageChange)="onTabledataChange($event)"></pagination-controls>
+                    </div>
+
+                </div>
+
+                <div class="card" style="padding: inherit;">
+
+                    <table class="table table-bordered text-center">
+
+                        <thead>
+                            <tr>
+                                <th width="5%" scope="col">S.No.</th>
+                                <th width="45%" scope="col">Email</th>
+                                <th width="25%" scope="col">First Name</th>
+                                <th width="25%" scope="col">Last Name</th>
+                                <!-- <th scope="col">Country</th>
+                  <th scope="col">City</th> -->
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+                            <tr
+                                *ngFor="let Item of this.surchdata | paginate: {itemsPerPage: tableSize, currentPage: page, totalItems: count }; let i = index;">
+                                <td style="text-align: center;">{{i+1}}</td>
+                                <td style="text-align: center;">{{Item.Email}}</td>
+                                <td style="text-align: center;">{{Item.First_Name}}</td>
+                                <td style="text-align: center;">{{Item.Last_Name}}</td>
+                                <!-- <td style="text-align: center;">{{Item.country}}</td> -->
+                                <td style="text-align: center;">{{Item.city}}</td>
+                                <!-- <td style="text-align: center;">{{Item.country}}</td>
+                  <td style="text-align: center;">{{Item.city}}</td> -->
+                            </tr>
+                        </tbody>
+
+                    </table>
+
+
+                    <div class="firstdiv p-2 mt-4 pagetitle"
+                        style="display: flex;align-items: center;flex-flow:  row wrap;">
+                        <div class="col-md-8">
+
+                            <h1 class="companygreeting m-0">Total contacts</h1>
+                        </div>
+                        <div class="col-md-2">
+                            <h1 class="companygreeting m-0">{{surchdata?.length}}</h1>
+
+                        </div>
+
+                        <form (ngSubmit)="send()">
+
+                            <!-- <div class="col-md-2">
+                                <button type="submit" style="text-decoration: none; color: rgb(255, 255, 255);"
+                                    class="btn btn-secondary">Save</button>
+
+                                    <button type="reset" class="btn border ml-2 mb-1" [routerLink]="['/segment']">Cancel</button>
+                               
+                            </div> -->
+
+                            <div class="button2 mt-4">
+                                <button type="submit" class="btn btn-secondary">Save</button>&nbsp;&nbsp;
+                                <button type="reset" class="btn border bg-light ml-2 mb-1">Cancel</button>
+                            </div>
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+</main>

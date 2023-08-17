@@ -1,0 +1,424 @@
+<div class="container pt-5">
+    <div class="card">
+
+        <div class="pt-3 ps-2">
+            <h2 class="text_style">Create Campaigns</h2>
+        </div>
+        <!-- <div class="edit  ps-2 pb-2"> Edit name</div> -->
+
+        <br>
+        <div class="container-fluid mainbox mb-2">
+            <form method="post" [formGroup]="FromCampaigs" (ngSubmit)="campaigns()">
+                <div class="container pt-3 ps-2 pb-2">
+                    <div class="row mb-3">
+                        <div class="col-md-9 to1"> <span><i class="bi bi-check2-circle"></i></span>
+                            <span><b>TO</b></span>
+                            <p class="data1">Who are you sending this campaign to?</p>
+
+
+                        </div>
+                        <div class="col-md-3">
+
+                            <button class="button1" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseOne1" aria-expanded="true" aria-controls="collapseOne"
+                                style="margin-right: -24px">
+                                Add Recipients
+                            </button>
+                        </div>
+
+                        <div class="accordion" id="accordionExample">
+                            <div class="accordion-item acordian">
+                                <h2 class="accordion-header" id="headingOne">
+
+                                </h2>
+                                <div id="collapseOne1" class="accordion-collapse collapse " aria-labelledby="headingOne"
+                                    data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label for="">Contact List</label>
+                                                <br> <br>
+                                                <!-- <select class="form-select"> -->
+
+                                                <ng-multiselect-dropdown [placeholder]="'Select Contact List'"
+                                                    formControlName="sentTo" [settings]="dropdownSettings"
+                                                    [data]="Emaildata" [(ngModel)]="selectedItems"
+                                                    (onSelect)="onItemSelect($event)"
+                                                    (onSelectAll)="onSelectAll($event)">
+
+                                                </ng-multiselect-dropdown>
+
+                                                <!-- <div *ngIf="f && f?.['sentTo']?.invalid && f?.['sentTo']?.touched"
+                                                    class="small text-danger text-start ps-3">Contact List is
+                                                    required.
+                                                </div> -->
+
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <label for="">Segment List</label>
+                                                <br> <br>
+                                                <select class="form-select" formControlName="sentTo" placeholder="">
+                                                    <option value="">Select Segment List</option>
+                                                    <option *ngFor="let a of segment[0]" (click)="onClick(a)">
+                                                        {{a.segmentName}}</option>
+                                                </select>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-md-4 div1hs"> <span><i class="bi bi-check2-circle"></i></span>
+                        <span><b>From</b></span>
+                        <p class="p2">Who is sending this campaign?</p>
+
+
+                    </div>
+
+                    <div class="col-md-5">
+                        <!-- <input type="text" class="form-control mb-3" placeholder="Name"> -->
+                        <select name="dropdown" class="form-select mt-4" id="">
+                            <option value="" *ngFor="let i of userdrop" (click)="on(i)"> {{i.Name}}</option>
+                            <option value="1">Select Users</option>
+
+                        </select>
+                    </div>
+
+                    <div class="col-md-3">
+
+                        <button class="button1" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                            aria-expanded="true" aria-controls="collapseOne">
+                            From
+                        </button>
+
+                    </div>
+
+                    <div class="accordion" id="accordionExample">
+                        <div class="accordion-item acordian">
+                            <h2 class="accordion-header" id="headingOne">
+
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse " aria-labelledby="headingOne"
+                                data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <div class="row">
+
+                                        <div class="col-md-12 row">
+
+                                            <div class="col-md-4">
+
+                                                <input type="text" class="form-control mb-3" placeholder="Name"
+                                                    formControlName="ToName" maxlength="20" (keypress)="ValidateAlpha($event)">
+
+                                                <div *ngIf="f && f?.['ToName']?.invalid && f?.['ToName']?.touched"
+                                                    class="small text-danger text-start ps-3">Name is required.</div>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <input type="email" class="form-control mb-3" placeholder="Email"
+                                                    formControlName="senderEmail" maxlength="50" [ngClass]="{errors:getcontrol('senderEmail')?.errors && getcontrol('senderEmail')?.touched}">
+                                                    <div *ngIf="getcontrol('senderEmail')?.errors && getcontrol('senderEmail')?.touched">
+                                                        <small class="text-danger" *ngIf="getcontrol('senderEmail')?.errors?.['required']">Email is Required.</small>
+                                                        <small class="text-danger" *ngIf="getcontrol('senderEmail')?.errors?.['email']">Please insert a valid email address.</small>
+                                                       </div>
+
+
+                                                <!-- (keyup)="Email($event)" -->
+                                                <!-- <div *ngIf="f && f?.['senderEmail']?.invalid && f?.['senderEmail']?.touched"
+                                                    class="small text-danger text-start ps-3">Email is required.</div> -->
+
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <input type="password" class="form-control mb-3" placeholder="Password"
+                                                    formControlName="senderPassword" maxlength="25" [ngClass]="{errors:getcontrol('senderPassword')?.errors && getcontrol('senderPassword')?.touched}">
+                                                    <div *ngIf="getcontrol('senderPassword')?.errors && getcontrol('senderPassword')?.touched">
+                                                        <small class="text-danger" *ngIf="getcontrol('senderPassword')?.errors?.['required']">Password is Required.</small>
+                                                        <small class="text-danger" *ngIf="getcontrol('senderPassword')?.errors?.['pattern']">The password must contain one or more lowercase characters numeric values and uppercase characters.</small>
+                                                       </div>
+                                                <!-- <div *ngIf="f && f?.['senderPassword']?.invalid && f?.['senderPassword']?.touched"
+                                                    class="small text-danger text-start ps-3">Password is required.
+                                                </div> -->
+                                            </div>
+
+                                            <!-- <div class="col-md-6">
+                                                <input type="text" class="form-control mb-3" placeholder="Code number">
+
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <input type="text" class="form-control mb-3"
+                                                    placeholder="Incoming server mail">
+
+
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <input type="text" class="form-control mb-3"
+                                                    placeholder="Outgoing server mail">
+                                            </div> -->
+
+
+
+
+
+                                        </div>
+
+                                        <!-- <div class="col-md-12">
+
+                                            <div class="col-md-6">
+                                                <button class="Schedulesave"><a>
+
+                                                        Save</a>
+                                                </button>
+
+
+                                                <a class="ps-2 color:blue">cancel</a>
+
+
+
+
+                                            </div>
+                                        </div> -->
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-9 div2"> <span><i class="bi bi-check2-circle"></i></span> <span><b>
+                                Subject</b></span>
+                        <p class="p3">What's the subject line for this campaign?</p>
+
+
+                    </div>
+                    <div class="col-md-3">
+
+                        <button class="button1" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne2"
+                            aria-expanded="true" aria-controls="collapseOne">
+                            Subject
+                        </button>
+                    </div>
+
+                    <div class="accordion" id="accordionExample">
+                        <div class="accordion-item acordian">
+                            <h2 class="accordion-header" id="headingOne">
+
+                            </h2>
+                            <div id="collapseOne2" class="accordion-collapse collapse " aria-labelledby="headingOne"
+                                data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <div class="row">
+                                        <div class="col-md-12 row">
+
+                                            <div class="col-md-6">
+                                                <!-- <b> <label for="text"> Subject</label></b> -->
+                                                <input type="text" class="form-control mb-3"
+                                                    placeholder="What's the subject line for this campaign?" (keypress)="ValidateAlpha($event)"
+                                                    formControlName="Subject" maxlength="40">
+
+                                                <div *ngIf="f && f?.['Subject']?.invalid && f?.['Subject']?.touched"
+                                                    class="small text-danger text-start ps-3">Subject is required.
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+
+
+
+                                            </div>
+                                        </div>
+
+                                        <!-- <div class="col-md-12">
+
+                                            <div class="col-md-6">
+                                                <button class="Schedulesave">
+                                                    <a style="color: #ffffff; ">
+
+                                                        Save</a>
+                                                </button>
+
+
+                                                <a class="ps-2 color:blue">cancel</a>
+
+
+
+
+                                            </div>
+                                        </div> -->
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row ">
+                    <div class="col-md-4 div3"> <span>
+                            <i class="bi bi-check2-circle"></i></span> <span><b>Content</b></span>
+                        <p class="p4">Design the content for your email.</p>
+
+
+                    </div>
+                    <div class="col-md-5">
+                        <!-- <input type="text" class="form-control mb-3" placeholder="Name"> -->
+                        <select name="dropdown" class="form-select mt-4" id="" formControlName="template_Id">
+                            <!-- <option value="1">select from save templates</option> -->
+                            <option value="">Select Templates</option>
+                            <option *ngFor="let i of Template" value="{{i.template_Id}}">
+                                {{i.template_Name}}</option>
+                            <!-- <option value="2">save template 2</option>
+                            <option value="3">save template 3</option>
+                            <option value="4">save template 4</option> -->
+                        </select>
+
+                        <div *ngIf="f && f?.['template_Id']?.invalid && f?.['template_Id']?.touched"
+                            class="small text-danger text-start ps-3">Templates is required.
+                        </div>
+
+                    </div>
+                    <!-- <div class="col-md-3">
+                        <button class="button1" type="button">
+                            Design Email
+                        </button>
+                      
+
+                    </div> -->
+                </div>
+
+
+
+
+                <div class="col-md-12 mt-3">
+                    <!-- <img src="/mailchip/assets/img/template-bg (1).svg" alt="" class="imgtemp"> -->
+
+                </div>
+
+                <hr>
+
+                <div class="row mb-3">
+                    <div class="col-md-9 div2"> <span><i class="bi bi-check2-circle"></i></span> <span><b>
+                                Schedule</b></span>
+                        <p class="p3">Schedule your date and time for this campaign?</p>
+
+
+                    </div>
+                    <div class="col-md-3">
+
+                        <button class="button1" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne3"
+                            aria-expanded="true" aria-controls="collapseOne">
+                            Schedule
+                        </button>
+                    </div>
+
+                    <div class="accordion" id="accordionExample">
+                        <div class="accordion-item acordian">
+                            <h2 class="accordion-header" id="headingOne">
+
+                            </h2>
+                            <div id="collapseOne3" class="accordion-collapse collapse " aria-labelledby="headingOne"
+                                data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+
+                                    <div class="row">
+                                        <div class="col-md-12 row">
+
+                                            <div class="col-md-4">
+                                                <input type="date" class="form-control mb-3" [(ngModel)]="date"
+                                                    min="{{current_date}}" placeholder="Enter Date"
+                                                    formControlName="Date">
+
+                                                <div *ngIf="f && f?.['Date']?.invalid && f?.['Date']?.touched"
+                                                    class="small text-danger text-start ps-3">Date is required.
+                                                </div>
+
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <input type="time" class="form-control mb-3" formControlName="Time">
+                                                <div *ngIf="f && f?.['Time']?.invalid && f?.['Time']?.touched"
+                                                    class="small text-danger text-start ps-3">Time is required.
+                                                </div>
+
+                                            </div>
+                                            <div class="col-md-4">
+
+
+                                                <select class="form-select" formControlName="Timezone">
+
+                                                    <option *ngFor="let Item of timeZone">{{Item.offset}} -
+                                                        {{Item.name}}</option>
+
+                                                </select>
+                                                <div *ngIf="f && f?.['Timezone']?.invalid && f?.['Timezone']?.touched"
+                                                    class="small text-danger text-start ps-3">Timezone is required.
+                                                </div>
+
+                                            </div>
+
+                                            <!-- <div class="col-md-6">
+                                                <button class="sendimidiatebtn" type="button">
+                                                    Send immediately
+                                                </button>
+                                            </div> -->
+
+
+                                            <!-- <div class="col-md-12 mt-4">
+
+                                                <div class="col-md-6">
+                                                    <button class="Schedulesave">
+                                                        <a style="color: #ffffff; ">
+
+                                                            Schedule</a>
+                                                    </button>
+
+
+                                                    <a class="ps-2 color:blue">cancel</a>
+
+                                                </div>
+                                            </div> -->
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+
+                    <button class="btn btn-secondary" type="submit"  [disabled]="FromCampaigs.invalid">Submit</button>
+                    &nbsp;&nbsp;
+
+                    <button class="btn border bg-light ml-2 mb-1" type="reset"
+                        [routerLink]="['/campaigns']">Cancel</button>
+
+
+                </div>
+
+
+
+
+
+            </form>
+
+        </div>
+    </div>
+
+
+</div>

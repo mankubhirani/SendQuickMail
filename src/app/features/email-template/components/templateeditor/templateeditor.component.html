@@ -1,0 +1,25 @@
+<div class=" heading pb-5">
+  <div class="row">
+    <div class="col-md-6">
+      <h1 class="text_style">Email-Template-Editor</h1>
+    </div>
+
+  </div>
+</div>
+<form [formGroup]="loginForm" (ngSubmit)="postdata()">
+  <div class="row mb-3">
+
+    <div class="col-md-5 col-lg-5">
+      <input class="form-control" type="text" placeholder="Email-Template-Editor-Name" formControlName="template_Name" maxlength="20">
+
+
+    </div>
+    <angular-editor [(ngModel)]="htmlContent" [config]="editorConfig" (ngModelChange)="onHtmlContentChanged($event)"
+      class="mt-2"
+      formControlName="body"></angular-editor>
+
+
+    <div class="col-md-5 col-lg-5 mt-2">
+      <button type="submit" class="btn btn-primary" >Submit</button>
+    </div> </div>
+</form>

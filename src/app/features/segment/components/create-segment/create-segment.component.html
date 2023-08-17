@@ -1,0 +1,112 @@
+<!-- <p>create-segment works!</p> -->
+
+<main id="main" class="main">
+    <div class="card" style="padding: inherit;">
+        <form [formGroup]="createSegment" (ngSubmit)="send()">
+
+
+            <!-- jumbotron content  start -->
+            <div class=" pb-">
+                <h3 class="text1">Create segments</h3>
+            </div>
+
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="text">Name</label>
+                        <br>
+                        <input type="text" class="form-control" formControlName="segmentName" maxlength="20"  (keypress)="ValidateAlpha($event)">
+                        <div *ngIf="f && f?.['segmentName']?.invalid && f?.['segmentName']?.touched"
+                            class="small text-danger text-start ps-3">Segment Name is required.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-6 mt-4">
+                        Criteria
+                    </div>
+                </div>
+                <br>
+
+            </div>
+            <div class="col-md-12">
+
+                <div class="row">
+                    <!-- <div class="col-md-2" style="text-align: center">
+                        <i class="bi bi-plus-circle" (click)="add()" style="font-size: x-large;"></i>
+                        <i class="bi bi-dash-circle ms-1" style="font-size: x-large;"></i>
+                    </div> -->
+
+                    <div class="col-md-3">
+                        <select class="form-select" formControlName="contactfieldType" 
+                            [ngClass]="{ 'is-invalid': submitted && f.contactfieldType.errors }" id="contactfieldType">
+                            <option value="" disabled [selected]="true">Select Type</option>
+                            <option value="First_Name">First Name</option>
+                            <option value="Last_Name">Last Name</option>
+                            <option value="email">Email</option>
+                            <option value="Address">State</option>
+                            <option value="Country">Country</option>
+                            <option value="Country">City</option>
+                            <!-- <option value="Contact Rating">Contact Rating</option> -->
+                            <!-- <option value="Email Client">Email Client</option> -->
+                            <!-- <option value="Email marketing engagement">Email marketing engagement</option>  -->
+                            <!-- <option value="Email marketing status">Email marketing status</option> -->
+                            <!-- <option value="Location">Location</option> -->
+                            <!-- <option value="Phone number">Phone number</option> -->
+                            <!-- <option value="Birthday">Birthday</option> -->
+                            <!-- <option value="Date added">Date added</option> -->
+                        </select>
+                        <div *ngIf="f && f?.['contactfieldType']?.invalid && f?.['contactfieldType']?.touched"
+                            class="small text-danger text-start ps-3">Criteria Type is required.</div>
+                    </div>
+                    <div class="col-md-3">
+                        <select class="form-select" formControlName="FieldfindBy" id="FieldfindBy"
+                        [ngClass]="{ 'is-invalid': submitted && f.FieldfindBy.errors }"(change)="contact($event)">
+                        <option value="" disabled [selected]="true">Select Type</option>
+                            <!-- <option>is</option> -->
+                            <!-- <option>is not</option> -->
+                            <option value="contains" >contains</option>
+                            <option value="doesn't contains">doesn't contains</option>
+                        </select>
+                        <div *ngIf="f && f?.['FieldfindBy']?.invalid && f?.['FieldfindBy']?.touched"
+                            class="small text-danger text-start ps-3">Field Type is required.</div>
+                    </div>
+                    <div class="col-md-3">
+                        <input type="text" class="form-control" formControlName="criteria" (input)="searchData($event)" maxlength="30" (keypress)="ValidateAlpha($event)">
+                        <div *ngIf="f && f?.['criteria']?.invalid && f?.['criteria']?.touched"
+                            class="small text-danger text-start ps-3">Value is required.</div>
+                    </div>
+
+                    <div hidden class="col-md-3">
+                        <input type="text" class="form-control" formControlName="fieldType">
+                    </div>
+                </div>
+            </div>
+
+
+            <div id="new_chq" class="col-md-12"></div>
+
+
+            <div class="pt-3">
+                <p>Criteria Pattern : 1</p>
+            </div>
+            <div>
+                <p>Tip: Comma separated search values can be given. They will be interpreted as 'OR' criteria.</p>
+            </div>
+            <div>
+                <p>Example Last Name contains Jones, Smith, West will be treated as (Last Name contains Jones) OR
+                    (Last Name contains smith) OR (Last Name contains west).</p>
+            </div>
+
+            <div class="button2 mt-4">
+                <button type="submit" style="text-decoration: none; color: rgb(255, 255, 255);"
+                    class="btn btn-secondary" [disabled]="createSegment.invalid" (click)="dataSave()">Next</button>
+                <!-- <button type="button" class="btn btn-link ms-1" style="border: .5px solid gray; text-decoration: none;"
+                    [routerLink]="['/segment']">Cancel</button> -->
+            </div>
+            <!-- jumbotron content end -->
+        </form>
+    </div>
+</main>

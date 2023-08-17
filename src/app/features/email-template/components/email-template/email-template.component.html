@@ -1,0 +1,183 @@
+<main id="main" class="main">
+    <!-- jumbotron content  start -->
+    <div class=" heading pb-5">
+        <div class="row">
+            <div class="col-md-6">
+                <h1 class="text_style">Email-Template</h1>
+            </div>
+
+        </div>
+    </div>
+    <!-- navpills -->
+    <div class="card" style="padding: inherit;">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="home-tab" data-toggle="tab" role="tab" aria-controls="home"
+                    aria-selected="true">Saved</a>
+            </li>
+
+        </ul>
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                <div class="overflowemail">
+                    <!-- teable heade -->
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <!-- <th scope="col"><input type="checkbox"></th> -->
+                                <th width="5%" scope="col">S.No.</th>
+
+                                <th width="35%" scope="col">Template Name</th>
+                                <!-- <th scope="col" width="10%"> -->
+                                    <!-- <div class="dropdown">
+                                        <button class="btn data-toggle border" type="button" id="dropdownMenuButton"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Folder
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <a class="dropdown-item" href="#">You have no folders</a>
+                                            <a class="dropdown-item" href="#">Another action</a>
+                                            <hr>
+
+                                        </div>
+                                    </div> -->
+                                <!-- </th> -->
+                                <th scope="col" width="35%">
+                                    <div class="row">
+
+                                        <div class="col-md-3"><label>Sort by</label></div>
+                                        <div class="col-md-4 p-0">
+                                            <div class="inline-block">
+                                                <select class="form-select" aria-label="Default select example">
+                                                    <!-- <option selected>Newesst first</option>
+                                                    <option value="1">Oldest first</option> -->
+                                                    <option value="2"(click)="setOrderAtoZ()">A to Z</option>
+                                                    <option value="3"(click)="setOrderZtoA()">Z to A</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </th>
+                                <th scope="col" width="25%">
+                                    <div class="input-group ">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1"><i
+                                                    class="bi bi-search"></i></span>
+                                        </div>
+                                        <input type="text" class="form-control" placeholder="Search saved templates"
+                                            aria-label="Username" aria-describedby="basic-addon1"  [(ngModel)]="surchtext"  maxlength="20">
+                                    </div>
+                                </th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let Item of Template  | filter: surchtext let i = index " width="100%">
+                                <th scope="row">{{i+1}}</th>
+                                <!-- <th scope="row"><input aria-label="Checkbox for following text input"></th> -->
+                                <!-- <td><img src="assets/img/about_customer_journeys_.png" width="60px" alt="" srcset=""> -->
+                                <!-- </td> -->
+                                <td>
+                                    <h5 class="text-info" (click)="onClick(Item)" [routerLink]="['/template']">
+                                        {{Item.template_Name}} </h5>
+                                </td>
+                                <!-- <td><h5 class="text-info"> {{Item.template_Name}}</h5></td> -->
+<td></td>
+                                <td>
+
+
+                                    <button class="btn creat-studio-btn " type="button" id="dropdownMenuButton1"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                        <span> Action <i class="bi bi-chevron-down"></i></span>
+                                    </button>
+
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                        <li><a class="dropdown-item" (click)="onClick(Item)" [routerLink]="['/template-editor']">Edit</a></li>
+                                        <li><a class="dropdown-item" (click)="delettemp(Item.template_Id)">Delete</a></li>
+                                    </ul>
+
+                                </td>
+                            </tr>
+                            <!-- <tr>
+                                <td style="text-align: center;">{{1}}</td>
+                                
+                                <td><img src="assets/img/audience.jpg" width="60px" alt="" srcset=""></td>
+                                <td>
+                                    <h5 class="text-info"> Untitled Template</h5>
+                                    <p>Last edited on Feb 23, 2022 6:47 am by prince patel
+                                        Classic</p>
+                                </td>
+                                <td>
+
+
+                                    <button class="btn creat-studio-btn " type="button" id="dropdownMenuButton1"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                        <span> Action <i class="bi bi-chevron-down"></i></span>
+                                    </button>
+
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                        <li><a class="dropdown-item" href="#">Edit</a></li>
+                                        <li><a class="dropdown-item" href="#">Delete</a></li>
+                                    </ul>
+
+                                </td>
+                            </tr> -->
+                            <!-- <tr>
+                                <th scope="row"><input type="checkbox" aria-label="Checkbox for following text input">
+                                </th>
+                                <td><img src="assets/img/garden.png" width="60px" alt="" srcset=""></td>
+                                <td>
+                                    <h5 class="text-info"> Untitled Template</h5>
+                                    <p>Last edited on Feb 23, 2022 6:47 am by prince patel
+                                        Classic</p>
+                                </td>
+                                <td>
+
+
+                                    <button class="btn creat-studio-btn " type="button" id="dropdownMenuButton1"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                        <span> Action <i class="bi bi-chevron-down"></i></span>
+                                    </button>
+
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                        <li><a class="dropdown-item" href="#">Edit</a></li>
+                                        <li><a class="dropdown-item" href="#">Delete</a></li>
+                                    </ul>
+
+                                </td>
+                            </tr> -->
+                        </tbody>
+                    </table>
+                    <!-- table end -->
+                </div>
+            </div>
+            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="jumbodx">
+                                    <img src="assets/img/purchased-empty-min (1).png" width="50%" alt="">
+                                    <p class="jumbo-Dy">
+                                        Need some inspiration? Explore premium email campaign templates designed by
+                                        Mailchimp experts.
+                                    </p>
+
+                                    <p class="lead">
+                                        <a class="btn content-studio-btn1  btn-md fw-bold" href="#"
+                                            role="button">Browser the Marketplace</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+ 
+
+
+</main>

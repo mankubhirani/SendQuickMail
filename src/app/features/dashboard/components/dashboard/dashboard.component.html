@@ -1,0 +1,222 @@
+<section class="section dashboard">
+
+    <div class="col-md-12 ">
+        <div class="firstdiv p-2  pagetitle" style="display: flex;align-items: center;flex-flow:  row wrap;">
+            <div class="col-md-10">
+
+                <h1 class="companygreeting m-0">Good Afternoon Cylsys software</h1>
+            </div>
+            <div class="col-md-2">
+                <a > <button type="button" class="btn btn-secondary btnhs btncreate">Create</button></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-12">
+        <div class="row">
+            <!-- first card (6) start -->
+            <div class="col-md-6 ">
+                <div class="card info-card sales-card">
+                    <div class="card-body pb-2">
+                        <h5 class="card-title1">Recent campaigns</h5>
+                        <div class="row">
+                            <div class="col-md-12 row">
+                                <div class="col-md-8">
+                                    <select name="dropdown" class="form-control ddc">
+                                        <option value="3">software development-State</option>
+                                        <option value="1">software development-mix country</option>
+                                        <option value="2">software development-country</option>
+
+
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <button type="button" class="btn btn-secondary btnhs">View report</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 mt-2">
+                            <i class="bi bi-square-fill sqr"> <span class="sqrspan">Sent jan 31 2013 12:16pm </span></i>
+
+                        </div>
+                        <div class="col-md-12 mt-2">
+                            <h5 class="card-title1">385 Message sent</h5>
+                        </div>
+
+                        <div class="col-md-12 mt-2">
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" style="width: 60%" aria-valuenow="15"
+                                    aria-valuemin="0" aria-valuemax="100"></div>
+                                <div class="progress-bar bg-info" role="progressbar" style="width: 15%"
+                                    aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                                <div class="progress-bar bg-success" role="progressbar" style="width: 9%"
+                                    aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+
+                            </div>
+
+                        </div>
+                        <div class="col-md-12 mt-2">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <i class="bi bi-square-fill sqr sqr1"> <span class="sqrspan">60% opened</span></i>
+                                </div>
+                                <div class="col-md-4">
+                                    <i class="bi bi-square-fill sqr sqr2"> <span class="sqrspan"> 15.3%
+                                            unopened</span></i>
+                                </div>
+                                <div class="col-md-4">
+                                    <i class="bi bi-square-fill sqr sqr3"> <span class="sqrspan"> 9.1% clicked
+                                        </span></i>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+
+
+
+                    </div>
+                </div>
+            </div>
+            <!-- first card (6) end -->
+
+
+            <!-- Second card (6) start -->
+            <div class="col-md-6">
+                <div class="card info-card sales-card">
+                    <div class="card-body secondcad">
+                        <h5 class="card-title1">Email campaigns</h5>
+
+                        <div class="row">
+
+
+                            <div class="col-md-12 row pt-5 pb-5">
+                                <div class="col-md-3">
+                                    <h3 class="tbldata2c"><a class="color:darkblue">61</a></h3>
+                                    <p class="tbldata2d">Sent</p>
+                                </div>
+                                <div class="col-md-3">
+                                    <h3 class="tbldata2c"><a class="color:darkblue">0</a></h3>
+                                    <p class="tbldata2d">Schedule</p>
+                                </div>
+                                <div class="col-md-3">
+                                    <h3 class="tbldata2c"><a class="color:darkblue">0</a></h3>
+                                    <p class="tbldata2d">In testing</p>
+                                </div>
+                                <div class="col-md-3">
+                                    <h3 class="tbldata2c"><a class="color:darkblue">1</a></h3>
+                                    <p class="tbldata2d">Draft</p>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- Second card (6) end -->
+
+            <!-- overview start -->
+            <div class="col-md-12">
+                <div class="card info-card sales-card">
+                    <div class="tbldata1 row">
+                        <div class="col-md-3 col-sm-12 tbldatahs">
+                            <h3 class="tbldata2c"><a class="color:darkblue">{{finaldata?.length}}</a></h3>
+                            <p class="tbldata2d">Total Contacts </p>
+                        </div>
+                        <div class="col-md-3 col-sm-12 tbldatahs">
+                            <h3 class="tbldata2c">14</h3>
+                            <p class="tbldata2d">New Contacts</p>
+                        </div>
+                        <div class="col-md-3 col-sm-12 tbldatahs">
+                            <h3 class="tbldata2c">14</h3>
+                            <p class="tbldata2d">Unsubscribes</p>
+                        </div>
+                        <div class="col-md-3 col-sm-12 tbldatahs">
+                            <h3 class="tbldata2c">47</h3>
+                            <p class="tbldata2d">Bounce</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- overview end -->
+
+
+            <!-- Reports start -->
+            <div class="col-12">
+                <div class="card">
+
+                    <div class="filter">
+                        <a class="icon"  data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                            <li class="dropdown-header text-start">
+                                <h6>Filter</h6>
+                            </li>
+
+                            <li><a class="dropdown-item" >Today</a></li>
+                            <li><a class="dropdown-item" >This Month</a></li>
+                            <li><a class="dropdown-item" >This Year</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="card-body">
+                        <h5 class="card-title">Contact</h5>
+
+                        <!-- Line Chart -->
+                        <div id="reportsChart"></div>
+
+
+                        <!-- End Line Chart -->
+
+                    </div>
+
+                </div>
+            </div>
+            <!-- Reports End  -->
+            <div class="col-12">
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <div class="card info-card sales-card p-5">
+
+
+                            <canvas id="myChart"></canvas>
+
+
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card  sales-card">
+                            <div class="card-body secondcad">
+                                <h5 class="card-title1">Next 24 hour Activity</h5>
+
+                                <div class="row">
+
+
+
+                                    <div class="col-md-12 row pt-5 pb-2">
+
+                                        <i class="bi bi-newspaper dashicon">
+
+                                        </i>
+                                        <p class="dashiconp">You've no Activities set for next 24 hours.</p>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+            </div>
+            </div>
+        </div>
+
+</section>

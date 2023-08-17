@@ -1,0 +1,240 @@
+<div class="container pt-5">
+    <div class="card">
+
+        <div class="pt-3 ps-2">
+            <h2 class="text_style">Edit Campaigns</h2>
+        </div>
+        <!-- <div class="edit  ps-2 pb-2"> Edit name</div> -->
+
+        <br>
+        <div class="container-fluid mainbox mb-2">
+            <form [formGroup]="FromCampaigs"   (ngSubmit)="campaigns()">
+                <div class="container pt-3 ps-2 pb-2">
+                    <div class="row mb-3">
+                        <div class="col-md-9 to1"> <span><i class="bi bi-check2-circle"></i></span>
+                            <span><b>TO</b></span>
+                            <p class="data1">Who are you sending this campaign to?</p>
+                        </div>
+                        <div class="col-md-3">
+                            <button class="button1" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseOne1" aria-expanded="true" aria-controls="collapseOne"
+                                style="margin-right: -24px">
+                                Add Recipients
+                            </button>
+                        </div>
+
+                        <div class="accordion" id="accordionExample">
+                            <div class="accordion-item acordian">
+                                <h2 class="accordion-header" id="headingOne">
+                                </h2>
+                                <div id="collapseOne1" class="accordion-collapse collapse " aria-labelledby="headingOne"
+                                    data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label for="">Contact List</label>
+                                                <br> <br>
+                                                <ng-multiselect-dropdown [placeholder]="'Select Contact List'"
+                                                    [settings]="dropdownSettings" formControlName="sentTo"
+                                                    [data]="dropdownListdata" [(ngModel)]="Emaildata"
+                                                    [formControlName]="'sentTo'" (onSelect)="onItemSelect($event)"
+                                                    (onSelectAll)="onSelectAll($event)"></ng-multiselect-dropdown>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="">Segment List</label>
+                                                <br> <br>
+                                                <select class="form-select" (change)="Status($event)"
+                                                    formControlName="sentTo"  *ngIf="segment && segment[0]">
+                                                    <option value="">Select Segment List</option>
+                                                    <option *ngFor="let a of segment[0]"  [ngValue]="a.segmentName" (click)="onClick(a)">
+                                                        {{a?.segmentName}}</option>
+                                                </select>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4 div1hs"> <span><i class="bi bi-check2-circle"></i></span>
+                        <span><b>From</b></span>
+                        <p class="p2">Who is sending this campaign?</p>
+                    </div>
+                    <div class="col-md-5">
+                        <select name="dropdown" class="form-select mt-4" id="">
+                            <option value="" *ngFor="let i of userdrop" (click)="on(i)"> {{i.Name}}</option>
+                            <option value="1">Select Users</option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="col-md-3">
+                        <button class="button1" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                            aria-expanded="true" aria-controls="collapseOne">
+                            From
+                        </button>
+                    </div>
+
+                    <div class="accordion" id="accordionExample">
+                        <div class="accordion-item acordian">
+                            <h2 class="accordion-header" id="headingOne">
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse " aria-labelledby="headingOne"
+                                data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <div class="row">
+                                        <div class="col-md-12 row">
+                                            <div class="col-md-4">
+                                                <input type="text" class="form-control mb-3" placeholder="Name" (keypress)="ValidateAlpha($event)"
+                                                    formControlName="ToName" [ngClass]="{errors:getcontrol('ToName')?.errors && getcontrol('ToName')?.touched}" maxlength="35" >
+                                                    <div *ngIf="getcontrol('ToName')?.errors && getcontrol('ToName')?.touched">
+                                                        <small class="text-danger" *ngIf="getcontrol('ToName')?.errors?.['required']">Email is Required.</small> </div>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <input type="email" class="form-control mb-3" placeholder="Email"maxlength="50"
+                                                    formControlName="senderEmail" [ngClass]="{errors:getcontrol('senderEmail')?.errors && getcontrol('senderEmail')?.touched}" >
+                                                    <div *ngIf="getcontrol('senderEmail')?.errors && getcontrol('senderEmail')?.touched">
+                                                        <small class="text-danger" *ngIf="getcontrol('senderEmail')?.errors?.['required']">Email is Required.</small>
+                                                        <small class="text-danger" *ngIf="getcontrol('senderEmail')?.errors?.['email']">Please insert a valid email address.</small>
+                                                    
+                                                    </div>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <input type="password" class="form-control mb-3" placeholder="Password"
+                                                    formControlName="senderPassword"  [ngClass]="{errors:getcontrol('senderPassword')?.errors && getcontrol('senderPassword')?.touched}" >
+                                                    <div *ngIf="getcontrol('senderPassword')?.errors && getcontrol('senderPassword')?.touched">
+                                                        <small class="text-danger" *ngIf="getcontrol('senderPassword')?.errors?.['required']">password is Required.</small>
+                                                        <small class="text-danger" *ngIf="getcontrol('senderPassword')?.errors?.['pattern']">The password must contain one or more lowercase characters numeric values and uppercase characters.</small>
+                                                    
+                                                    </div>
+                                                </div>
+                                           
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-9 div2"> <span><i class="bi bi-check2-circle"></i></span> <span><b>
+                                Subject</b></span>
+                        <p class="p3">What's the subject line for this campaign?</p>
+                    </div>
+                    <div class="col-md-3">
+                        <button class="button1" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne2"
+                            aria-expanded="true" aria-controls="collapseOne">
+                            Subject
+                        </button>
+                    </div>
+
+                    <div class="accordion" id="accordionExample">
+                        <div class="accordion-item acordian">
+                            <h2 class="accordion-header" id="headingOne">
+                            </h2>
+                            <div id="collapseOne2" class="accordion-collapse collapse " aria-labelledby="headingOne"
+                                data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <div class="row">
+                                        <div class="col-md-12 row">
+                                            <div class="col-md-6">
+                                                <input type="text" class="form-control mb-3"
+                                                    placeholder="What's the subject line for this campaign?"
+                                                    formControlName="Subject" (keypress)="ValidateAlpha($event)" maxlength="70" >
+                                            </div>
+                                            <div class="col-md-6"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row ">
+                    <div class="col-md-4 div3"> <span>
+                            <i class="bi bi-check2-circle"></i></span> <span><b>Content</b></span>
+                        <p class="p4">Design the content for your email.</p>
+                    </div>
+                    <div class="col-md-5">
+                        <select name="dropdown" class="form-select mt-4" id="" formControlName="template_Id">
+                            <option value="">Select Templates</option>
+                            <option *ngFor="let i of Template" value="{{i.template_Id}}">
+                                {{i.template_Name}}</option>
+
+                        </select>
+                    </div>
+                </div>
+
+                <hr>
+
+                <div class="row mb-3">
+                    <div class="col-md-9 div2"> <span><i class="bi bi-check2-circle"></i></span> <span><b>
+                                Schedule</b></span>
+                        <p class="p3">Schedule your date and time for this campaign?</p>
+                    </div>
+                    <div class="col-md-3">
+                        <button class="button1" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne3"
+                            aria-expanded="true" aria-controls="collapseOne">
+                            Schedule
+                        </button>
+                    </div>
+
+                    <div class="accordion" id="accordionExample">
+                        <div class="accordion-item acordian">
+                            <h2 class="accordion-header" id="headingOne">
+                            </h2>
+                            <div id="collapseOne3" class="accordion-collapse collapse " aria-labelledby="headingOne"
+                                data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <div class="row">
+                                        <div class="col-md-12 row">
+                                            <div class="col-md-4">
+                                                <input type="date" class="form-control mb-3" placeholder="Enter Date"
+                                                    formControlName="Date">
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <input type="time" class="form-control mb-3" formControlName="Time">
+                                            </div>
+                                            <div class="col-md-4">
+
+
+                                                <select class="form-select" formControlName="Timezone">
+
+                                                    <option *ngFor="let Item of timeZone">{{Item.offset}} -
+                                                        {{Item.name}}</option>
+
+                                                </select>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <button class="btn btn-secondary" type="submit" >Update</button>
+                    &nbsp;&nbsp;
+
+                    <!-- [disabled]="FromCampaigs.invalid" -->
+                    <button class="btn btn-secondary" type="submit" [routerLink]="['/campaigns']">back</button>
+                    &nbsp;&nbsp;
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

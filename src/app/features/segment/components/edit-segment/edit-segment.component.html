@@ -1,0 +1,177 @@
+<main id="main" class="main">
+    <div class="card" style="padding: inherit;">
+        <form [formGroup]="editSegment">
+
+
+            <!-- jumbotron content  start -->
+            <div class=" pb-">
+                <h3 class="text_style">Update Segments</h3>
+            </div>
+
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="text">Name</label>
+                        <br>
+                        <input type="text" class="form-control" formControlName="segmentName" maxlength="30" (keypress)="ValidateAlpha($event)">
+                    </div>
+                </div>
+            </div>
+
+            <br>
+
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-12">
+                        Criteria
+                    </div>
+                </div>
+
+                <!-- <br>
+                <div class="col-md-12">
+                    &nbsp;<i class="bi bi-plus-circle" (click)="add()" style="font-size: x-large;"></i>
+                  
+                </div> -->
+
+
+
+                <!-- <div class="row"> -->
+
+
+                <!-- <form [formGroup]="create"> -->
+
+                <!-- <div *ngFor="let seg of arrayofobj;
+                    let i = index ">
+                    <header hidden>{{ i }}</header>
+
+                    <div class="col-md-12"> -->
+
+                <div class="row ">
+
+                    <!-- <div class="col-md-2"></div> -->
+
+                    <div class="col-md-3">
+                        <select class="form-select" formControlName="contactfieldType"
+                            (change)="eventcontactfieldType($event)"  [(ngModel)]="surchtext">
+                            <!-- <option [value]="arrayofobj" [selected]="arrayofobj[i].contactfieldType">{{ arrayofobj[i].contactfieldType}}</option> -->
+                            <!-- <option value="" disabled [selected]="true">Select Type</option> -->
+                            <option value="" disabled [selected]="true">Select Type</option>
+                            <option value="First_Name">First Name</option>
+                            <option value="Last_Name">Last Name</option>
+                            <option value="email">Email</option>
+                            <option value="Address">State</option>
+                            <!-- <option value="Country">Country</option> -->
+                            <option value="Country">City</option>
+                            <!-- <option value="Address">Address</option>
+                            <option value="Country">Country</option>
+                            <option value="Contact Rating">Contact Rating</option>
+                            <option value="Email Client">Email Client</option>
+                            <option value="Email marketing engagement">Email marketing engagement</option>
+                            <option value="Email marketing status">Email marketing status</option>
+                            <option value="Location">Location</option>
+                            <option value="Phone number">Phone number</option>
+                            <option value="Birthday">Birthday</option>
+                            <option value="Date added">Date added</option> -->
+                        </select>
+                    </div>
+
+                    <div class="col-md-3">
+                        <select class="form-select" formControlName="FieldfindBy"  (change)="contact($event)">
+                            <!-- <option [value]="arrayofobj" [selected]="arrayofobj[i].FieldfindBy">{{ arrayofobj[i].FieldfindBy }}</option> -->
+                            <!-- <option value="" disabled [selected]="true">Select Type</option> -->
+                            <!-- <option>is</option> -->
+                            <!-- <option>is not</option> -->
+                        <option value="" disabled [selected]="true">Select Type</option>
+
+                            <option value="contains">contains</option>
+                            <option value="doesn't contains">doesn't contains</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-3">
+                        <input type="text" class="form-control" formControlName="criteria"    (input)="searchData($event)" maxlength="30" (keypress)="ValidateAlpha($event)">
+                    </div>
+
+                    <!-- value="{{ arrayofobj[i].criteria }}" -->
+                    <!-- <i class="bi bi-dash-circle ms-1" style="font-size: x-large;" (click)="remove(i)"></i> -->
+
+                </div>
+                <!-- </div>
+                </div> -->
+
+                <!-- <div formArrayName="segment_users">
+
+                   
+                    <div *ngFor="let seg of segment_users?.controls;
+                        let i = index " [formGroupName]="i">
+                        <header hidden>{{i}}</header>
+
+                     
+
+                        <div class="row mt-4">
+
+                            <div class="col-md-2"></div>
+
+                            <div class="col-md-3">
+                                <select class="form-select" formControlName="contactfieldType">
+                                    <option value="First name">First name</option>
+                                    <option value="Last name">Last name</option>
+                                    <option value="Email Address">Email</option>
+                                   
+                                </select>
+                            </div>
+
+                            <div class="col-md-3">
+                                <select class="form-select" formControlName="FieldfindBy">
+                                   
+                                    <option value="contains">contains</option>
+                                    <option value="doesn't contains">doesn't contains</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-3">
+                                <input type="text" class="form-control" formControlName="criteria">
+                            </div>
+
+                            <div hidden class="col-md-3">
+                                <input type="text" class="form-control" formControlName="fieldType">
+                            </div>
+
+                            <i class="bi bi-dash-circle ms-1" style="font-size: x-large;" (click)="remove(i)"></i>
+
+                        </div>
+                      
+                    </div>
+                </div> -->
+
+            </div>
+
+
+
+            <div id="new_chq" class="col-md-12"></div>
+
+
+            <div class="pt-3">
+                <p>Criteria Pattern : 1</p>
+            </div>
+            <div>
+                <p>Tip: Comma separated search values can be given. They will be interpreted as 'OR' criteria.
+                </p>
+            </div>
+            <div>
+                <p>Example Last Name contains Jones, Smith, West will be treated as (Last Name contains Jones)
+                    OR
+                    (Last Name contains smith) OR (Last Name contains west).</p>
+            </div>
+
+            <div class="button2 mt-4">
+                <button type="submit" style="text-decoration: none; color: rgb(255, 255, 255);"
+                    class="btn btn-secondary" [disabled]="editSegment.invalid"  (click)="dataSave()">Next</button>
+                <button type="button" class="btn btn-link ms-1" style="border: .5px solid gray; text-decoration: none;"
+                    [routerLink]="['/segment']">Cancel</button>
+                    
+            </div>
+            <!-- jumbotron content end -->
+        </form>
+    </div>
+</main>
